@@ -1,6 +1,6 @@
 /**This is the logic of the Basic and Double Version of the Card Game. It includes the following parameters:
  * @author Kostas Oikonomou
- * @version 1
+ * @version 2
  */
 
 import java.util.ArrayList;
@@ -33,6 +33,8 @@ public class Game {
      */
 
     public int getRandom() {return random.nextInt(cards.size());}
+
+    public Card getTable(int i,int j){return table[i][j];}
 
     /**
      * This function creates the Card Items we need for this version of the game
@@ -67,51 +69,6 @@ public class Game {
         }
     }
 
-    /**
-     * This function shows the table to the player.
-     */
-
-    public void showTable()
-    {
-        for (int i = 0;i<table.length;i++) {
-            System.out.println("");
-            for (int j = 0; j < table[i].length; j++)
-            {
-                if(table[i][j].getIsOpen()){
-                    if (table[i][j].getCardValue() < 10){
-                        System.out.print(" "+" "+" " + table[i][j].getCardValue() + " ");
-                    }
-                    else {
-                        System.out.print(" " + " " + table[i][j].getCardValue() + " ");
-                    }
-                }
-                else if(table[i][j].getCardValue() == 0){
-                    System.out.print(" "+" "+" "+" "+" ");
-                }
-                else if((i*columns + j) < 10){
-                    System.out.print(" [ "+(i*columns + j)+"]");
-                }
-                else {System.out.print(" ["+(i*columns + j)+"]");}
-            }
-        }
-    }
-
-    /**
-     * This function sets the state of the card (open / close).
-     * @param a an int that represents the card that the player picked.
-     */
-
-    public void showCards(int a)
-    {
-        for (int i = 0;i<table.length;i++){
-            for (int j = 0; j < table[i].length; j++)
-            {
-                if ((i*columns + j) == a) {
-                    table[i][j].setIsOpen(true);
-                }
-            }
-        }
-    }
 
     /**
      * This function sets the cards' value to 0 if they have the same cardValue.
@@ -143,8 +100,6 @@ public class Game {
             table[b1][b2].setIsOpen(false);
             return true;
         }
-        table[a1][a2].setIsOpen(false);
-        table[b1][b2].setIsOpen(false);
         return false;
     }
 
@@ -200,4 +155,9 @@ public class Game {
         table[c1][c2].setIsOpen(false);
         return false;
     }
+
+    /** This is a getter for the arraylist of teh cards.
+     * @return the cards.
+     */
+    public ArrayList<Card> getCards(){return cards;}
 }

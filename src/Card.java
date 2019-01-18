@@ -1,6 +1,6 @@
 /**This is the Card Class. It makes a Card item with the following:
  * @author Kostas Oikonomou
- * @version 1
+ * @version 2
  */
 
 public class Card {
